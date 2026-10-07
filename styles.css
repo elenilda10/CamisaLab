@@ -1,0 +1,127 @@
+:root{color-scheme:dark;--bg:#08111c;--card:#101d2b;--line:#263547;--soft:#8c9db0;--white:#edf5fc;--accent:#b4ff43;--accent2:#d5ff95}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 79% 1%,#162b39 0%,transparent 38%),var(--bg);color:var(--white);font-size:14px}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.topbar{height:75px;border-bottom:1px solid #263547;display:flex;align-items:center;justify-content:space-between;padding:0 max(26px,calc((100vw - 1332px)/2));gap:16px}.brand{display:flex;align-items:center;gap:11px}.brand-mark{display:grid;place-items:center;width:43px;height:43px;border:2px solid var(--accent);font-weight:900;font-size:17px;border-radius:11px;letter-spacing:-2px;transform:skew(-5deg)}.brand-mark span{color:var(--accent)}.brand-word{font-weight:900;letter-spacing:.9px;font-size:18px}.brand-word span{color:var(--accent)}.top-pill{font-size:10px;letter-spacing:1.6px;font-weight:700;border:1px solid #334456;border-radius:100px;padding:10px 16px;color:#d2e3f0}.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px;box-shadow:0 0 8px var(--accent)}.top-help{color:#c6d1dc;font-size:12px}.top-help span{color:var(--accent)}.shell{max-width:1332px;padding:47px 26px 50px;margin:auto}.intro{max-width:800px;margin-bottom:35px}.eyebrow{color:var(--accent);font-size:10px;letter-spacing:2.3px;font-weight:850}.intro h1{margin:15px 0 14px;font-size:clamp(43px,5.5vw,76px);line-height:1.015;font-weight:850;letter-spacing:-3.6px}.intro h1 em{font-style:normal;color:var(--accent)}.intro p{line-height:1.7;max-width:660px;font-size:15px;color:#aabacb;margin:0}.workspace{display:grid;grid-template-columns:minmax(310px,405px) minmax(0,1fr);align-items:start;gap:20px}.controls,.stage-panel{border:1px solid var(--line);background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 18px 50px #0002}.sidebar-heading{height:52px;display:flex;align-items:center;gap:9px;padding:0 22px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:1.4px;font-weight:850;color:#afbdcb}.mini-icon{font-size:16px;color:var(--accent)}.version{margin-left:auto;font-size:10px;border:1px solid #3b5060;border-radius:5px;padding:4px 6px;color:#768ca1}.panel-section{padding:22px;border-bottom:1px solid var(--line)}.panel-section:last-child{border-bottom:none}.section-top{display:flex;align-items:center;gap:11px;margin-bottom:20px}.step{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;background:#22332b;color:var(--accent);font-size:11px;font-weight:900;border-radius:8px}.section-top h2{font-size:15px;margin:0;letter-spacing:-.3px}.panel-section label:not(.upload-tile):not(.color-field):not(.custom-swatch){display:block;font-weight:650;color:#b3c0cd;font-size:11px;margin:12px 0 8px}.field{display:block;background:#0b1622;border:1px solid #344658;border-radius:8px;color:#f1f6fb;height:40px;padding:0 13px;width:100%;outline:0}.field:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px #b4ff4320}.field option{background:#102030}.fine-note{font-size:10px;line-height:1.5;color:#8396aa;margin:10px 0 15px}.upload-tile{display:flex;align-items:center;gap:12px;border:1px dashed #456075;border-radius:10px;padding:14px 13px;cursor:pointer;transition:.2s;background:#122436}.upload-tile:hover,.upload-tile:focus-within{border-color:var(--accent);background:#193027}.upload-tile b,.upload-tile small{display:block}.upload-tile b{font-size:12px;color:#e6f2fb}.upload-tile small{font-size:10px;color:#8fa6b8;margin-top:5px;line-height:1.4}.upload-icon{font-weight:400;border:1px solid #425769;display:grid;place-items:center;color:var(--accent);border-radius:9px;width:36px;height:36px;flex-shrink:0;font-size:21px}.sponsor-upload{background:#182d29;border-color:#5a8351}.text-action{border:0;background:none;padding:9px 0 0;color:var(--accent);font-size:11px;text-align:left;text-decoration:underline}.custom-detail{margin:14px 0 16px;border:1px solid #324658;border-radius:9px;padding:10px 13px}.custom-detail summary{cursor:pointer;font-size:11px;color:#cad9e6;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}.custom-detail summary::-webkit-details-marker{display:none}.custom-detail summary span{font-size:17px;color:var(--accent)}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}.color-field{display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:10px;color:#b2c2d2}.color-field input{width:35px;height:28px;background:none;border:0;padding:0}.and-divider{display:flex;align-items:center;gap:8px;color:#788d9f;font-size:9px;font-weight:850;letter-spacing:1px;margin:17px 0 4px}.and-divider:before,.and-divider:after{content:"";height:1px;flex:1;background:#334557}.small-heading{font-size:10px;color:#aebfcb;letter-spacing:1px;font-weight:800;margin:19px 0 10px}.swatch-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.swatch{border:1px solid #3b5265;background:#152637;color:#acbfcc;border-radius:6px;padding:8px 9px;font-size:10px;font-weight:650}.swatch.active{border-color:var(--accent);color:var(--accent);background:#24372d}.custom-swatch{display:flex;align-items:center;gap:6px;margin:0!important;font-size:10px!important;cursor:pointer}.custom-swatch input{border:0;padding:0;background:transparent;width:18px;height:16px;cursor:pointer}input[type=range]{width:100%;height:5px;margin:3px 0 17px;accent-color:var(--accent);cursor:pointer}.range-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}.range-label label{margin:0!important}.range-label output{color:var(--accent);font-size:11px;font-weight:750}.check-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:3px 0 13px}.check-row label{margin:0!important;font-size:11px!important;line-height:1.4}.check-row input{accent-color:var(--accent);width:17px;height:17px;flex-shrink:0}.reset-button{border:1px solid #3d5267;background:transparent;border-radius:8px;width:100%;padding:11px 8px;color:#ccdae8;font-size:11px;font-weight:700}.reset-button:hover{background:#1d3042}.stage-toolbar{padding:20px 23px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}.stage-eyebrow{font-size:10px;letter-spacing:1.4px;color:var(--accent);font-weight:850;margin-bottom:5px}.stage-title{font-size:18px;letter-spacing:-.5px;font-weight:800}.preview-tag{color:#8fa3b1;border:1px solid #354b59;border-radius:5px;padding:6px 7px;font-size:9px;letter-spacing:.6px;white-space:nowrap}.canvas-holder{margin:0 23px;overflow:hidden;border-radius:10px;background:#07121b;position:relative}.canvas-holder:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid #314759;border-radius:10px}canvas{display:block;width:100%;height:auto;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.stage-tip{display:flex;gap:10px;align-items:center;color:#91a7b8;font-size:11px;line-height:1.5;padding:15px 23px}.stage-tip>span:first-child{font-size:20px;color:var(--accent)}.stage-actions{display:flex;align-items:center;gap:10px;padding:0 23px 18px}.download-btn{height:52px;border:0;border-radius:9px;background:var(--accent);color:#182313;font-size:13px;font-weight:900;flex:1;transition:.2s}.download-btn span{font-size:21px;margin-right:8px;vertical-align:-1px}.download-btn:hover{background:#d5ff96;transform:translateY(-1px)}.minor-btn{height:52px;border:1px solid #405265;border-radius:9px;padding:0 16px;background:transparent;color:#c4d3dd;font-weight:700;font-size:11px}.stage-footnote{border-top:1px solid var(--line);padding:13px 23px 18px;color:#7790a0;font-size:10px;line-height:1.6}.howto{border-top:1px solid #273849;margin-top:62px;padding-top:38px}.howto h2{font-size:clamp(25px,3vw,36px);letter-spacing:-1.1px;margin:12px 0 24px}.howto-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.howto-cards>div{border:1px solid #2b3e50;background:#111e2b;border-radius:11px;padding:20px}.howto-cards span{color:var(--accent);font-size:12px;font-weight:900}.howto-cards h3{font-size:16px;margin:14px 0 7px}.howto-cards p{font-size:12px;line-height:1.6;margin:0;color:#92a7b8}footer{padding:25px;text-align:center;color:#667f91;font-size:10px;letter-spacing:1.2px;border-top:1px solid #233546}footer span{color:var(--accent);margin:0 12px}@media(max-width:940px){.workspace{grid-template-columns:minmax(0,1fr)}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar-heading{grid-column:1/-1}.panel-section:last-child{grid-column:1/-1}.panel-section:nth-child(2){border-right:1px solid var(--line)}.stage-panel{max-width:760px;width:100%;margin:auto}}@media(max-width:630px){.topbar{height:66px;padding:0 17px}.top-pill{display:none}.shell{padding:32px 14px 40px}.intro h1{font-size:51px;letter-spacing:-2.3px}.intro p{font-size:13px}.workspace{gap:14px}.controls{display:block}.panel-section:nth-child(2){border-right:none}.panel-section:last-child{grid-column:auto}.stage-toolbar{padding:17px 14px 13px}.canvas-holder{margin:0 12px}.stage-tip{padding:14px}.stage-actions{padding:0 12px 15px}.stage-footnote{padding:12px}.stage-title{font-size:15px}.preview-tag{font-size:8px}.howto{margin-top:45px}.howto-cards{grid-template-columns:1fr}.top-help{font-size:11px}.brand-word{font-size:16px}.stage-actions{gap:7px}.minor-btn{padding:0 10px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* CamisaLab 2.0 — edição guiada sem perder a identidade visual */
+.section-description{margin:-7px 0 17px;color:#8fa8ba;line-height:1.55;font-size:11px}
+.type-picker{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.type-option{min-height:79px;display:flex;align-items:center;gap:10px;padding:12px 10px;border:1px solid #365065;background:#112132;border-radius:11px;color:#c0d0dd;text-align:left;transition:background .18s,border-color .18s,box-shadow .18s}
+.type-option.active{background:linear-gradient(135deg,#253c2c,#1c302b);border-color:var(--accent);box-shadow:0 0 0 1px #b4ff4333 inset}
+.type-icon{width:32px;height:32px;flex:none;border:1px solid #486071;border-radius:8px;display:grid;place-items:center;color:var(--accent);font-size:21px}
+.type-letter{font-weight:900;font-size:16px}.type-option strong,.type-option small{display:block}.type-option strong{font-size:11px;color:#f1f8fc;line-height:1.3}.type-option small{font-size:10px;color:#91a7ba;margin-top:5px}
+.mode-fields{animation:fadeIn .16s ease-out}.mode-fields[hidden], [hidden]{display:none!important}
+.text-format-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.text-format-grid .field{font-size:11px;padding:0 9px}
+.position-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.position-option{position:relative;min-height:74px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;border-radius:9px;border:1px solid #334859;background:#0c1a28;color:#a9bdcd;font-size:10px;font-weight:680;padding:9px 3px;transition:background .18s,border-color .18s}
+.position-option:hover{border-color:#71899a;background:#182b3a}.position-option.active{background:#23372e;border-color:var(--accent);color:#f0ffe0}.position-symbol{color:#a0b8cb;font-size:20px;height:22px;line-height:22px}.position-option.active .position-symbol{color:var(--accent)}.filled-indicator{display:none;position:absolute;right:7px;top:7px;height:6px;width:6px;background:var(--accent);border-radius:50%}.position-option[data-filled="true"] .filled-indicator{display:block}
+.area-status{margin-top:13px;padding:11px 12px;border:1px solid #2e4751;background:#11242c;border-radius:9px;font-size:11px;color:#b3c8d0;line-height:1.5}.area-status b{color:#e4f1ed}.area-buttons{margin-top:10px}.add-area-btn{background:#b4ff43;color:#1e2b1b;border:0;width:100%;padding:11px;border-radius:8px;font-size:11px;font-weight:850}.clear-area-btn{width:100%;background:none;color:#a8bbca;border:1px solid #364858;border-radius:8px;padding:10px;font-weight:650;font-size:11px}.clear-area-btn:hover{color:#fff;border-color:#79909f}
+.advanced-detail{margin:4px 0 14px}.advanced-inner{padding-top:14px}.advanced-inner input[type=range]{margin-bottom:17px}
+input:disabled,button:disabled,select:disabled{opacity:.45;cursor:not-allowed}
+.type-option:focus-visible,.position-option:focus-visible,.add-area-btn:focus-visible,.clear-area-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@keyframes fadeIn{from{opacity:.6;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:940px){.controls{display:block}.panel-section:nth-child(2){border-right:none}.panel-section:last-child{grid-column:auto}.workspace{grid-template-columns:minmax(0,1fr)}.stage-panel{max-width:780px}}
+@media(min-width:941px){.stage-panel{position:sticky;top:15px}}
+@media(max-width:420px){.position-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.type-option{padding:9px 7px;gap:7px}.type-icon{width:28px;height:28px}.position-option{font-size:9px}.type-option strong{font-size:10px}}
+
+
+/* CamisaLab 2.1 — movimento livre com precisão */
+.free-move-box{margin-top:14px;padding:14px 13px;border:1px solid #2f4554;border-radius:10px;background:linear-gradient(180deg,#0f202e,#102331)}
+.move-heading{margin:0 0 8px}
+.move-help{margin:0 0 13px;color:#8fa8ba;line-height:1.55;font-size:11px}
+.nudge-layout{display:grid;grid-template-columns:120px 1fr;gap:13px;align-items:center}
+.nudge-pad{display:flex;flex-direction:column;align-items:center;gap:8px}
+.nudge-middle{display:flex;align-items:center;gap:8px}
+.nudge-btn,.nudge-center{width:34px;height:34px;border-radius:10px;border:1px solid #405767;background:#132637;color:#d5e4ee;font-size:16px;font-weight:800;display:grid;place-items:center;transition:background .18s,border-color .18s,transform .18s}
+.nudge-btn:hover,.nudge-center:hover{background:#203344;border-color:#8babba}.nudge-btn:active,.nudge-center:active{transform:translateY(1px)}
+.nudge-center{background:#22392e;border-color:var(--accent);color:var(--accent);font-size:20px}
+.axis-controls{display:grid;gap:8px}
+.axis-controls .range-label{margin-bottom:4px}
+.axis-controls input[type=range]{margin-bottom:4px}
+@media(max-width:420px){.nudge-layout{grid-template-columns:1fr}.nudge-pad{margin-bottom:4px}}
+
+
+/* CamisaLab 2.2 — rotação 360° simplificada */
+.rotate-box{margin-top:12px;padding:14px 13px;border:1px solid #32485a;border-radius:10px;background:linear-gradient(180deg,#10212f,#112534)}
+.rotate-layout{display:grid;gap:10px}
+.rotate-buttons{display:grid;grid-template-columns:1fr auto 1fr;gap:8px}
+.rotate-btn{min-height:40px;border-radius:10px;border:1px solid #405767;background:#132637;color:#d5e4ee;font-size:12px;font-weight:800;padding:0 10px;transition:background .18s,border-color .18s,transform .18s}
+.rotate-btn:hover{background:#203344;border-color:#8babba}.rotate-btn:active{transform:translateY(1px)}
+.rotate-btn.center{background:#22392e;border-color:var(--accent);color:var(--accent);min-width:62px}
+
+
+/* CamisaLab 2.3 — gesto de rotação e foco na prévia */
+@media(max-width:940px){.stage-panel{order:1}.controls{order:2}}
+@media(max-width:630px){.workspace{display:flex;flex-direction:column}.stage-panel{order:1}.controls{order:2}}
+.canvas-holder.is-rotating{box-shadow:0 0 0 1px #b4ff4377 inset,0 0 0 10px #b4ff4308}
+
+
+/* CamisaLab 3.0 — painel estilo home screen + alças táteis */
+.app-dock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:16px 16px 0}
+.dock-app{border:1px solid #324656;background:linear-gradient(180deg,#102130,#0d1c2b);color:#b5c8d8;border-radius:16px;min-height:88px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:10px;font-weight:800;text-align:center;transition:transform .18s,background .18s,border-color .18s,box-shadow .18s}
+.dock-app .dock-icon{font-size:24px;line-height:1}.dock-app.active{border-color:var(--accent);background:linear-gradient(180deg,#22392e,#14242f);color:#efffe0;box-shadow:0 0 0 1px #b4ff4338 inset}.dock-app:hover{transform:translateY(-1px);border-color:#6e8997}
+.control-pages{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px 16px 16px;scrollbar-width:none}.control-pages::-webkit-scrollbar{display:none}
+.control-page{scroll-snap-align:start;min-width:100%;border-radius:16px;overflow:hidden}
+.control-page .section-top h2{font-size:17px}
+@media(min-width:941px){.app-dock{padding:18px 18px 0}.control-pages{padding:16px 18px 18px}.control-page{min-width:calc(50% - 7px)}}
+@media(max-width:630px){.controls{padding-bottom:8px}.app-dock{position:sticky;top:10px;z-index:3;background:linear-gradient(180deg,#0d1823 75%,#0d182300);padding:14px 12px 8px;margin:0 -1px}.dock-app{min-height:74px;border-radius:14px;font-size:9px}.dock-app .dock-icon{font-size:21px}.control-pages{padding:10px 12px 14px}.control-page{min-width:100%}}
+.canvas-holder.is-transforming{box-shadow:0 0 0 1px #b4ff4390 inset,0 0 0 10px #b4ff4310}
+
+.sidebar-heading{min-width:100%;}
+
+
+/* CamisaLab 3.1 — correção estrutural do layout responsivo */
+html,body{max-width:100%;overflow-x:clip}
+.shell,.intro,.workspace,.controls,.stage-panel,.app-dock,.control-pages,.control-page{min-width:0}
+.workspace{width:100%;max-width:100%}
+.controls,.stage-panel{width:100%;max-width:100%;min-width:0}
+.controls{display:block}
+.app-dock{width:100%;min-width:0;grid-template-columns:repeat(4,minmax(0,1fr))}
+.dock-app{min-width:0;width:100%;overflow-wrap:anywhere}
+.control-pages{width:100%;max-width:100%;min-width:0;display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-left:14px;scroll-snap-type:x mandatory;padding:14px;touch-action:pan-x pan-y}
+.control-page{min-width:0;width:auto;max-width:none;flex:0 0 calc(100% - 28px);scroll-snap-align:start;scroll-snap-stop:always;border:1px solid #263d50;background:#111f2e;border-radius:14px;align-self:flex-start}
+.stage-panel{margin:0}
+@media(min-width:941px){
+  .workspace{display:grid;grid-template-columns:minmax(310px,405px) minmax(0,1fr)}
+  .control-pages{padding:14px}
+  .control-page{flex:0 0 calc(100% - 28px)}
+  .stage-panel{max-width:none}
+}
+@media(min-width:631px) and (max-width:940px){
+  .workspace{display:flex;flex-direction:column}
+  .stage-panel{order:1;max-width:780px;align-self:center}
+  .controls{order:2}
+}
+@media(max-width:630px){
+  .shell{padding:19px 12px 35px;max-width:100%}
+  .topbar{padding-inline:14px;max-width:100%}
+  .intro{margin-bottom:17px}
+  .intro h1{font-size:clamp(32px,10vw,43px);letter-spacing:-1.6px;margin:10px 0 9px}
+  .intro p{font-size:12px;line-height:1.55;max-width:36ch}
+  .eyebrow{font-size:9px;letter-spacing:1.5px}
+  .workspace{display:flex;flex-direction:column;gap:14px;min-width:0;width:100%}
+  .stage-panel{order:1;width:100%;max-width:100%;align-self:stretch}
+  .controls{order:2;width:100%;max-width:100%;min-width:0}
+  .stage-toolbar{padding:15px 13px 11px}
+  .canvas-holder{margin-inline:10px}
+  .stage-actions{padding-inline:10px}
+  .stage-tip{padding:12px}
+  .app-dock{position:static;padding:12px 9px 4px;gap:7px;background:none}
+  .dock-app{min-height:68px;border-radius:12px;padding:7px 3px;font-size:10px}
+  .dock-app .dock-icon{font-size:20px}
+  .control-pages{padding:10px;gap:10px;scroll-padding-left:10px}
+  .control-page{flex-basis:calc(100% - 20px);min-width:0}
+  .panel-section{padding:15px}
+  .sidebar-heading{padding-inline:13px}
+  .stage-title{font-size:14px}
+  .stage-footnote{padding:12px;font-size:9px}
+  .howto{margin-top:30px}
+}
+@media(max-width:360px){
+  .dock-app{font-size:9px}
+  .panel-section{padding:13px}
+  .stage-toolbar{gap:5px}
+  .preview-tag{padding:5px 4px;font-size:7px}
+}
+
+/* Altura acompanha o cartão selecionado, sem espaço vazio sob o painel */
+.control-pages{align-items:flex-start;overflow-y:hidden;transition:height .22s ease;}
+.control-page{align-self:flex-start;}
+@media(prefers-reduced-motion:reduce){.control-pages{transition:none}}
