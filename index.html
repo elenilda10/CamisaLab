@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#09121d" />
+  <meta name="description" content="Simule patrocinadores em camisas de futebol. Escolha um clube ou envie qualquer camisa, personalize a marca e exporte sua criação." />
+  <title>CamisaLab — Simulador Mundial de Patrocínios</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="CamisaLab, início"><span class="brand-mark">CL<span>.</span></span><span class="brand-word">CAMISA<span>LAB</span></span></a>
+    <span class="top-pill"><span class="live-dot"></span> SIMULADOR DE PATROCÍNIOS</span>
+    <a class="top-help" href="#como-usar">Como usar <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="inicio" class="shell">
+    <section class="intro">
+      <div class="eyebrow">UNIFORMES • CRIATIVIDADE • FUTEBOL</div>
+      <h1>O seu clube.<br /><em>A sua marca.</em></h1>
+      <p>Imagine qualquer patrocinador na camisa do seu time. Escolha uma camisa e decida se cada espaço terá imagem ou texto, com edição visual simples e rápida.</p>
+    </section>
+
+    <section class="workspace" aria-label="Editor de camisas">
+      <aside class="controls">
+        <div class="app-dock" id="appDock" role="group" aria-label="Seções do painel">
+          <button type="button" class="dock-app active" data-page-target="page-clube" aria-pressed="true"><span class="dock-icon">👕</span><span>Camisa</span></button>
+          <button type="button" class="dock-app" data-page-target="page-patrocinio" aria-pressed="false"><span class="dock-icon">⭐</span><span>Patrocínio</span></button>
+          <button type="button" class="dock-app" data-page-target="page-area" aria-pressed="false"><span class="dock-icon">📍</span><span>Área</span></button>
+          <button type="button" class="dock-app" data-page-target="page-ajustes" aria-pressed="false"><span class="dock-icon">🎛️</span><span>Ajustes</span></button>
+        </div>
+        <div class="sidebar-heading"><span class="mini-icon">⚙</span> PAINEL DE EDIÇÃO <span class="version">V3.1</span></div>
+        <div class="control-pages" id="controlPages">
+
+        <section class="panel-section control-page" id="page-clube">
+          <div class="section-top"><span class="step">01</span><h2>Escolha o clube</h2></div>
+          <label for="teamSearch">Buscar no catálogo de exemplos</label>
+          <input id="teamSearch" class="field" type="search" autocomplete="off" placeholder="Ex.: Flamengo, Real Madrid..." />
+          <label for="teamSelect">Clube</label>
+          <select id="teamSelect" class="field" aria-label="Clube"></select>
+          <div id="teamInfo" class="fine-note">Modelos ilustrativos inspirados nas cores dos clubes.</div>
+          <details class="custom-detail" id="customTeamDetail">
+            <summary>Personalizar cores e estilo da camisa <span>+</span></summary>
+            <div class="detail-grid">
+              <label class="color-field">Cor principal <input id="primaryColor" type="color" value="#ffffff" /></label>
+              <label class="color-field">Cor secundária <input id="secondaryColor" type="color" value="#202020" /></label>
+            </div>
+            <label for="shirtPattern">Estampa ilustrativa</label>
+            <select id="shirtPattern" class="field">
+              <option value="plain">Lisa</option><option value="vertical">Listras verticais</option><option value="horizontal">Listras horizontais</option><option value="half">Metade a metade</option><option value="sash">Faixa diagonal</option><option value="pinstripes">Listras finas</option><option value="center">Faixa central</option>
+            </select>
+            <label for="customName">Nome do clube (opcional)</label>
+            <input id="customName" class="field" maxlength="42" placeholder="Meu time" />
+          </details>
+          <label class="upload-tile" for="shirtUpload"><span class="upload-icon">⇧</span><span><b>Enviar foto da camisa</b><small>PNG, JPG, WEBP — serve para qualquer clube</small></span></label>
+          <input id="shirtUpload" type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden />
+          <button id="clearShirt" class="text-action" type="button" hidden>Remover foto enviada e voltar ao modelo ilustrativo</button>
+        </section>
+
+        <section class="panel-section control-page" id="page-patrocinio">
+          <div class="section-top"><span class="step">02</span><h2>O que vai no patrocínio?</h2></div>
+          <p class="section-description">Escolha como sua marca vai aparecer no uniforme.</p>
+          <div class="type-picker" role="group" aria-label="Tipo de patrocínio">
+            <button type="button" class="type-option" data-kind="logo" aria-pressed="false"><span class="type-icon" aria-hidden="true">▧</span><span><strong>Imagem / Logo</strong><small>Enviar arquivo</small></span></button>
+            <button type="button" class="type-option active" data-kind="text" aria-pressed="true"><span class="type-icon type-letter" aria-hidden="true">Aa</span><span><strong>Texto</strong><small>Escrever nome</small></span></button>
+          </div>
+          <div id="imageFields" class="mode-fields" hidden>
+            <label class="upload-tile sponsor-upload" for="logoUpload"><span class="upload-icon">＋</span><span><b id="logoUploadLabel">Escolher imagem da empresa</b><small>PNG transparente, JPG, SVG ou WEBP</small></span></label>
+            <input id="logoUpload" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden />
+            <button id="removeLogo" class="text-action" type="button" hidden>Remover imagem deste espaço</button>
+            <p class="fine-note">Dica: logos sem fundo branco ficam mais naturais.</p>
+          </div>
+          <div id="textFields" class="mode-fields">
+            <label for="sponsorText">Nome que aparece na camisa</label>
+            <input id="sponsorText" class="field" maxlength="36" value="SUA MARCA" placeholder="Ex.: Minha Empresa" />
+            <div class="text-format-grid">
+              <div><label for="fontFamily">Estilo da fonte</label><select id="fontFamily" class="field"><option value="sport">Esportiva</option><option value="modern">Moderna</option><option value="classic">Clássica</option><option value="tech">Tecnológica</option></select></div>
+              <div><label for="fontWeight">Espessura</label><select id="fontWeight" class="field"><option value="900">Forte</option><option value="600">Média</option><option value="400">Normal</option></select></div>
+            </div>
+          </div>
+          <div class="small-heading">COR DO PATROCINADOR</div>
+          <div class="swatch-row" role="group" aria-label="Cores do patrocinador">
+            <button class="swatch active" type="button" data-tint="original">Original</button>
+            <button class="swatch" type="button" data-tint="#FFFFFF">Branca</button>
+            <button class="swatch" type="button" data-tint="#101820">Preta</button>
+            <label class="swatch custom-swatch" title="Outra cor">Outra <input id="tintColor" aria-label="Escolher outra cor" type="color" value="#ffad32" /></label>
+          </div>
+        </section>
+
+        <section class="panel-section control-page" id="page-area">
+          <div class="section-top"><span class="step">03</span><h2>Onde colocar?</h2></div>
+          <p class="section-description">Selecione uma área para editar. Cada área pode ter uma imagem ou texto diferente.</p>
+          <div class="position-grid" id="positionGrid" role="group" aria-label="Selecionar posição na camisa">
+            <button type="button" class="position-option active" data-position="center" aria-pressed="true"><span class="position-symbol">◉</span><span>Centro</span><i class="filled-indicator" aria-hidden="true"></i></button>
+            <button type="button" class="position-option" data-position="leftChest" aria-pressed="false"><span class="position-symbol">↖</span><span>Peito esq.</span><i class="filled-indicator" aria-hidden="true"></i></button>
+            <button type="button" class="position-option" data-position="rightChest" aria-pressed="false"><span class="position-symbol">↗</span><span>Peito dir.</span><i class="filled-indicator" aria-hidden="true"></i></button>
+            <button type="button" class="position-option" data-position="leftSleeve" aria-pressed="false"><span class="position-symbol">⇤</span><span>Manga esq.</span><i class="filled-indicator" aria-hidden="true"></i></button>
+            <button type="button" class="position-option" data-position="rightSleeve" aria-pressed="false"><span class="position-symbol">⇥</span><span>Manga dir.</span><i class="filled-indicator" aria-hidden="true"></i></button>
+            <button type="button" class="position-option" data-position="lower" aria-pressed="false"><span class="position-symbol">↓</span><span>Parte inferior</span><i class="filled-indicator" aria-hidden="true"></i></button>
+          </div>
+          <div class="area-status" id="areaStatus" role="status" aria-live="polite"></div>
+          <div class="area-buttons">
+            <button type="button" id="addArea" class="add-area-btn" hidden>＋ Adicionar patrocínio aqui</button>
+            <button type="button" id="clearArea" class="clear-area-btn">✕ Remover desta área</button>
+          </div>
+          <div class="free-move-box">
+            <div class="small-heading move-heading">MOVER LIVREMENTE</div>
+            <p class="move-help">Arraste a marca direto na camisa ou use os controles abaixo para ajustar com precisão.</p>
+            <div class="nudge-layout">
+              <div class="nudge-pad" role="group" aria-label="Mover patrocínio em qualquer direção">
+                <button type="button" class="nudge-btn" data-nudge="up" aria-label="Mover para cima">↑</button>
+                <div class="nudge-middle">
+                  <button type="button" class="nudge-btn" data-nudge="left" aria-label="Mover para a esquerda">←</button>
+                  <button type="button" class="nudge-center" id="centerAreaBtn" aria-label="Voltar para a posição inicial desta área">•</button>
+                  <button type="button" class="nudge-btn" data-nudge="right" aria-label="Mover para a direita">→</button>
+                </div>
+                <button type="button" class="nudge-btn" data-nudge="down" aria-label="Mover para baixo">↓</button>
+              </div>
+              <div class="axis-controls">
+                <div>
+                  <div class="range-label"><label for="xRange">Horizontal</label><output id="xValue">50%</output></div>
+                  <input id="xRange" type="range" min="0" max="100" value="50" />
+                </div>
+                <div>
+                  <div class="range-label"><label for="yRange">Vertical</label><output id="yValue">48%</output></div>
+                  <input id="yRange" type="range" min="0" max="100" value="48" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rotate-box">
+            <div class="small-heading move-heading">GIRO 360°</div>
+            <p class="move-help">Gire a marca livremente em qualquer ângulo usando os botões ou o controle deslizante.</p>
+            <div class="rotate-layout">
+              <div class="rotate-buttons" role="group" aria-label="Girar patrocínio">
+                <button type="button" class="rotate-btn" data-rotate-step="-15" aria-label="Girar 15 graus para a esquerda">⟲ 15°</button>
+                <button type="button" class="rotate-btn center" id="resetRotationBtn" aria-label="Voltar rotação para zero">0°</button>
+                <button type="button" class="rotate-btn" data-rotate-step="15" aria-label="Girar 15 graus para a direita">15° ⟳</button>
+              </div>
+              <div>
+                <div class="range-label"><label for="rotationRange">Ângulo</label><output id="rotationValue">0°</output></div>
+                <input id="rotationRange" type="range" min="0" max="360" value="0" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section control-page" id="page-ajustes">
+          <div class="section-top"><span class="step">04</span><h2>Personalize os ajustes</h2></div>
+          <div class="range-label"><label for="sizeRange">Tamanho</label><output id="sizeValue">32%</output></div>
+          <input id="sizeRange" type="range" min="5" max="80" value="32" />
+          <div class="range-label"><label for="opacityRange">Transparência</label><output id="opacityValue">100%</output></div>
+          <input id="opacityRange" type="range" min="10" max="100" value="100" />
+          <details class="custom-detail advanced-detail">
+            <summary>Mais ajustes <span>+</span></summary>
+            <div class="advanced-inner">
+              <div id="whiteOption" class="check-row"><label for="removeWhite">Remover fundo branco da imagem</label><input id="removeWhite" type="checkbox" /></div>
+              <div class="check-row"><label for="fabricEffect">Efeito de tecido na marca</label><input id="fabricEffect" type="checkbox" checked /></div>
+            </div>
+          </details>
+          <button class="reset-button" type="button" id="resetBtn">↺ &nbsp; Centralizar e restaurar ajustes</button>
+        </section>
+        </div>
+      </aside>
+
+      <section class="stage-panel">
+        <div class="stage-toolbar">
+          <div><div class="stage-eyebrow">PRÉ-VISUALIZAÇÃO AO VIVO</div><div class="stage-title" id="stageTitle">Sua camisa personalizada</div></div>
+          <span class="preview-tag">CONCEITO / FAN ART</span>
+        </div>
+        <div class="canvas-holder">
+          <canvas id="shirtCanvas" width="1024" height="1100" aria-label="Prévia da camisa com vários patrocinadores. Toque numa marca para selecioná-la e arraste para mudar de posição." role="img"></canvas>
+        </div>
+        <div class="stage-tip"><span>✥</span><span>Toque em um patrocínio para selecioná-lo. Arraste para mover. Use as alças da própria marca para aumentar, diminuir e girar com o dedo. No PC, a roda do mouse também gira a marca.</span></div>
+        <div class="stage-actions">
+          <button id="downloadBtn" type="button" class="download-btn"><span>↓</span> Baixar montagem em PNG</button>
+          <button id="resetAllBtn" type="button" class="minor-btn">Reiniciar</button>
+        </div>
+        <div class="stage-footnote">Projeto independente de simulação visual. Modelos desenhados são apenas ilustrativos, não réplicas oficiais. Marcas e clubes pertencem a seus titulares.</div>
+      </section>
+    </section>
+
+    <section id="como-usar" class="howto">
+      <div><span class="eyebrow">COMO FUNCIONA</span><h2>Da ideia à camisa em três passos.</h2></div>
+      <div class="howto-cards"><div><span>01</span><h3>Escolha um time</h3><p>Use os exemplos ou carregue uma foto da camisa de qualquer clube.</p></div><div><span>02</span><h3>Crie o patrocínio</h3><p>Marque Imagem ou Texto e escolha em qual parte da camisa a marca vai aparecer.</p></div><div><span>03</span><h3>Compartilhe</h3><p>Adicione outras marcas, arraste para ajustar e exporte o PNG sem as marcações do editor.</p></div></div>
+    </section>
+  </main>
+  <footer>CAMISALAB <span>•</span> FEITO PARA QUEM AMA FUTEBOL <span>•</span> VERSÃO 3.1 DEMONSTRAÇÃO</footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
