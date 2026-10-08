@@ -606,4 +606,4 @@ $('downloadBtn').addEventListener('click',()=>{
   }catch(err){console.error(err);alert('Erro ao exportar. Tente uma imagem local em PNG ou JPG.');}
 });
 state.sponsors.set('center',defaultSponsor('center'));
-updateModelUI();synchronizeUI();
+makeArt(activeSponsor());updateModelUI();synchronizeUI();
