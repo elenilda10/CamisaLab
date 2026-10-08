@@ -1,4 +1,4 @@
-# CamisaLab 3.2
+# CamisaLab 3.3
 
 Simulador responsivo de patrocinadores em camisas de futebol.
 
@@ -12,3 +12,6 @@ Simulador responsivo de patrocinadores em camisas de futebol.
 O projeto é um site estático com `index.html`, `styles.css`, `app.js` e `vercel.json`. Não precisa de `package.json`.
 
 Os uniformes do catálogo são ilustrativos, não oficiais. Você também pode carregar a foto de uma camisa.
+
+## Exportação 3.3
+A exportação não recebe faixa escura no rodapé. A marca CL. é exibida no canto superior direito.
