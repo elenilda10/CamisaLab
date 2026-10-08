@@ -207,7 +207,7 @@ function background(c){const g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,
   c.font='800 19px Arial';c.textAlign='left';c.fillStyle='#afc4d188';c.fillText('CAMISALAB / CONCEPT STUDIO',60,77);
   c.font='800 14px Arial';c.textAlign='right';c.fillStyle='#adff4c';c.fillText('EST. 2026',965,77);
 }
-function coverFit(c,img){const scale=Math.min(W/img.width,H/img.height);const w=img.width*scale,h=img.height*scale;c.fillStyle='#0d1a27';c.fillRect(0,0,W,H);c.drawImage(img,(W-w)/2,(H-h)/2,w,h);}
+function coverFit(c,img){const scale=Math.min(W/img.width,H/img.height);const w=img.width*scale,h=img.height*scale;c.fillStyle='#f2f2f2';c.fillRect(0,0,W,H);c.drawImage(img,(W-w)/2,(H-h)/2,w,h);}
 
 const FONTS = {
   sport: 'Impact, "Arial Narrow", sans-serif',
@@ -322,19 +322,29 @@ function drawSelection(c){
   }
   c.restore();
 }
+// Marca do CamisaLab no canto superior direito, sem cobrir a foto com rodapés.
+function drawBrandMark(c){
+  c.save();
+  const x=W-133,y=34,w=94,h=84,r=18;
+  c.beginPath();
+  c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
+  c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
+  c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
+  c.fillStyle='rgba(9,18,29,.93)';c.fill();
+  c.lineWidth=3;c.strokeStyle='#b4ff43';c.stroke();
+  c.textAlign='center';c.textBaseline='middle';
+  c.font='italic 900 39px Arial';c.fillStyle='#f5fafa';
+  c.fillText('CL',x+44,y+43);
+  c.fillStyle='#b4ff43';c.fillRect(x+67,y+58,8,8);
+  c.restore();
+}
 function renderTo(c,showGuide){
   background(c);
   if(state.shirtImage)coverFit(c,state.shirtImage);else drawShirt(c);
   for(const s of state.sponsors.values())drawSponsor(c,s);
   if(showGuide)drawSelection(c);
-  const overlay=c.createLinearGradient(0,875,0,1100);
-  overlay.addColorStop(0,'#06111b00');overlay.addColorStop(1,'#06111bf0');
-  c.fillStyle=overlay;c.fillRect(0,875,W,225);
-  c.textAlign='left';c.fillStyle='#f3f9fb';c.font='900 37px Arial';
-  const label=($('customName').value.trim()||state.team.name).toUpperCase();
-  c.fillText(label.substring(0,29),58,1011,820);
-  c.fillStyle='#a6bac4';c.font='700 16px Arial';c.fillText('PATROCÍNIO CONCEITUAL • NÃO OFICIAL',60,1051);
-  c.textAlign='right';c.fillStyle='#b4ff43';c.font='900 28px Arial';c.fillText('CL.',970,1035);
+  drawBrandMark(c);
 }
 function getHitNode(key, position, kind){
   if(!sponsorHitNodes.has(key)){
