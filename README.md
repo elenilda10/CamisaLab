@@ -15,3 +15,13 @@ Os uniformes do catálogo são ilustrativos, não oficiais. Você também pode c
 
 ## Exportação 3.3
 A exportação não recebe faixa escura no rodapé. A marca CL. é exibida no canto superior direito.
+
+
+## Documentos institucionais
+
+- [Termos de Uso e Responsabilidade](https://camisalab.vercel.app/termos.html) (arquivo `termos.html`)
+- [Política de Privacidade](https://camisalab.vercel.app/privacidade.html) (arquivo `privacidade.html`)
+
+Os links aparecem na página inicial e no rodapé, abrindo em uma nova aba. O arquivo `sitemap.xml` inclui as três páginas.
+
+**Antes de uso profissional/comercial:** indicar o nome do responsável pelo projeto e um e-mail de atendimento reservado na Política de Privacidade; revisar os documentos com assessoria jurídica. Atualmente as solicitações iniciais usam GitHub Issues, que é um canal público: não publicar dados pessoais nesse canal.
