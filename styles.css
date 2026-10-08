@@ -125,3 +125,14 @@ html,body{max-width:100%;overflow-x:clip}
 .control-pages{align-items:flex-start;overflow-y:hidden;transition:height .22s ease;}
 .control-page{align-self:flex-start;}
 @media(prefers-reduced-motion:reduce){.control-pages{transition:none}}
+
+
+/* CamisaLab 3.2 — rolagem livre sobre a camisa */
+/* Antes o canvas impedia qualquer swipe vertical na prévia. */
+#shirtCanvas{touch-action:pan-y;cursor:default}
+.sponsor-hit-layer{position:absolute;inset:0;pointer-events:none;z-index:2}
+.sponsor-hit-target{position:absolute;pointer-events:auto;touch-action:none;background:transparent;cursor:grab;user-select:none;-webkit-user-select:none}
+.sponsor-hit-target:active{cursor:grabbing}
+.sponsor-hit-handle{width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;z-index:12}
+.jump-to-controls{display:none;width:calc(100% - 24px);margin:0 12px 12px;border:1px solid #749b4c;background:#21392d;color:#d7ffab;border-radius:10px;padding:13px 9px;font-size:12px;font-weight:800;cursor:pointer}
+@media(max-width:940px){.jump-to-controls{display:block}}
