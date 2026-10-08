@@ -1,4 +1,4 @@
-# CamisaLab 3.1
+# CamisaLab 3.2
 
 Simulador responsivo de patrocinadores em camisas de futebol.
 
