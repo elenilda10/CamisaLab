@@ -94,6 +94,13 @@ Auckland City|Nova Zelândia|#1a589e|#f7f7f7|plain
 
 const $ = id => document.getElementById(id);
 const canvas = $('shirtCanvas');
+const canvasHolder = canvas.parentElement;
+// Camisa vazia aceita gestos nativos de rolagem. Apenas as marcas e suas alças
+// usam superfícies separadas que capturam o toque para a edição.
+const sponsorHitLayer = document.createElement('div');
+sponsorHitLayer.className = 'sponsor-hit-layer';
+canvasHolder.appendChild(sponsorHitLayer);
+const sponsorHitNodes = new Map();
 const ctx = canvas.getContext('2d', {alpha:false});
 const W = canvas.width, H = canvas.height;
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
@@ -329,7 +336,51 @@ function renderTo(c,showGuide){
   c.fillStyle='#a6bac4';c.font='700 16px Arial';c.fillText('PATROCÍNIO CONCEITUAL • NÃO OFICIAL',60,1051);
   c.textAlign='right';c.fillStyle='#b4ff43';c.font='900 28px Arial';c.fillText('CL.',970,1035);
 }
-function render(){renderTo(ctx,true);}
+function getHitNode(key, position, kind){
+  if(!sponsorHitNodes.has(key)){
+    const node=document.createElement('div');
+    node.className='sponsor-hit-target'+(kind==='body'?'':' sponsor-hit-handle');
+    node.dataset.sponsorPosition=position;
+    node.dataset.handleType=kind;
+    sponsorHitLayer.appendChild(node);
+    sponsorHitNodes.set(key,node);
+  }
+  return sponsorHitNodes.get(key);
+}
+function updateTouchTargets(){
+  // Em dispositivos móveis, o hitbox acompanha as coordenadas reais do canvas.
+  const width=canvas.getBoundingClientRect().width;
+  if(!width)return;
+  const scale=width/W;
+  const visible=new Set();
+  for(const s of state.sponsors.values()){
+    if(!s.art)continue;
+    const {w,h}=artDimensions(s);
+    const bodyKey=s.position+':body';
+    const body=getHitNode(bodyKey,s.position,'body');
+    visible.add(bodyKey);
+    body.style.left=(s.x/W*100)+'%';
+    body.style.top=(s.y/H*100)+'%';
+    body.style.width=Math.max(40,(w+16)*scale)+'px';
+    body.style.height=Math.max(34,(h+16)*scale)+'px';
+    body.style.transform=`translate(-50%,-50%) rotate(${s.rotation}deg)`;
+    body.style.zIndex=s.position===state.activePosition?'11':'10';
+    if(s.position===state.activePosition){
+      const m=handleMetrics(w,h);
+      for(const kind of ['rotate','resize']){
+        const k=s.position+':'+kind;
+        const handle=getHitNode(k,s.position,kind);
+        visible.add(k);
+        const point=worldPoint(m[kind],s);
+        handle.style.left=(point.x/W*100)+'%';
+        handle.style.top=(point.y/H*100)+'%';
+        handle.style.zIndex='12';
+      }
+    }
+  }
+  for(const [key,node] of sponsorHitNodes){node.hidden=!visible.has(key);}
+}
+function render(){renderTo(ctx,true);updateTouchTargets();}
 function synchronizeUI(){
   const s=activeSponsor(), d=s||defaultSponsor(state.activePosition);
   document.querySelectorAll('[data-position]').forEach(b=>{
@@ -421,15 +472,26 @@ function getPinch(){
     angle:Math.atan2(b.y-a.y,b.x-a.x)
   };
 }
-canvas.addEventListener('pointerdown',e=>{
+canvasHolder.addEventListener('pointerdown',e=>{
   if(e.button!==undefined&&e.button!==0)return;
-  const p=coordinates(e);pointers.set(e.pointerId,p);canvas.setPointerCapture(e.pointerId);
+  const hitTarget=e.target.closest('[data-sponsor-position]');
+  // Toque em qualquer parte livre da camisa = rolagem normal da página.
+  if(!hitTarget)return;
+  const p=coordinates(e);
+  pointers.set(e.pointerId,p);
+  canvasHolder.setPointerCapture(e.pointerId);
   if(pointers.size===1){
-    const sponsors=[...state.sponsors.values()].reverse();
-    let found=null, hit=null;
-    for(const candidate of sponsors){
+    const preferred=state.sponsors.get(hitTarget.dataset.sponsorPosition);
+    const candidates=[preferred,...[...state.sponsors.values()].reverse()].filter(Boolean);
+    let found=null,hit=null;
+    for(const candidate of candidates){
       const info=getHandleInfo(p,candidate);
-      if(info){found=candidate;hit=info;break;}
+      if(info || candidate===preferred){
+        found=candidate;
+        hit={type:candidate===preferred&&hitTarget.dataset.handleType!=='body'?
+          hitTarget.dataset.handleType:(info?.type||'move')};
+        break;
+      }
     }
     if(found){
       state.activePosition=found.position;synchronizeUI();
@@ -438,15 +500,15 @@ canvas.addEventListener('pointerdown',e=>{
       dragPrev=p;
       const {w,h}=artDimensions(found);
       transformOrigin={startPoint:p,startSize:found.size,startRotation:found.rotation,startDistance:Math.hypot(p.x-found.x,p.y-found.y),startAngle:Math.atan2(p.y-found.y,p.x-found.x),box:{w,h}};
-      canvas.parentElement.classList.add('is-transforming');
-    } else {dragging=false;dragPrev=null;interactionMode=null;transformOrigin=null;canvas.parentElement.classList.remove('is-transforming');}
+      canvasHolder.classList.add('is-transforming');
+    }
   } else if(pointers.size===2){
     const active=activeSponsor(),g=getPinch();
-    if(active){pinch={...g,origSize:active.size,origX:active.x,origY:active.y,origRotation:active.rotation};dragging=false;interactionMode='gesture';canvas.parentElement.classList.add('is-transforming');}
+    if(active){pinch={...g,origSize:active.size,origX:active.x,origY:active.y,origRotation:active.rotation};dragging=false;interactionMode='gesture';canvasHolder.classList.add('is-transforming');}
   }
   e.preventDefault();
 });
-canvas.addEventListener('pointermove',e=>{
+canvasHolder.addEventListener('pointermove',e=>{
   if(!pointers.has(e.pointerId))return;
   const p=coordinates(e);pointers.set(e.pointerId,p);
   const s=activeSponsor();if(!s)return;
@@ -482,13 +544,13 @@ canvas.addEventListener('pointermove',e=>{
 });
 function finish(e){
   pointers.delete(e.pointerId);
-  if(pointers.size<2) canvas.parentElement.classList.remove('is-transforming');
+  if(pointers.size<2) canvasHolder.classList.remove('is-transforming');
   dragging=false;dragPrev=null;pinch=null;interactionMode=null;transformOrigin=null;
 }
-canvas.addEventListener('pointerup',finish);
-canvas.addEventListener('pointercancel',finish);
-canvas.addEventListener('lostpointercapture',finish);
-canvas.addEventListener('wheel',e=>{
+canvasHolder.addEventListener('pointerup',finish);
+canvasHolder.addEventListener('pointercancel',finish);
+canvasHolder.addEventListener('lostpointercapture',finish);
+canvasHolder.addEventListener('wheel',e=>{
   const s=activeSponsor();if(!s)return;
   const p=coordinates(e);
   if(!hitSponsor(p,s))return;
@@ -545,6 +607,9 @@ window.addEventListener('resize',()=>{
   if(selected)resizePanelTo($(selected.dataset.pageTarget));
 });
 resizePanelTo(panelPages[0]);
+$('jumpToControls').addEventListener('click',()=>{
+  document.querySelector('.controls').scrollIntoView({behavior:'smooth',block:'start'});
+});
 $('teamSearch').addEventListener('input',e=>groupedTeams(e.target.value));
 $('teamSelect').addEventListener('change',e=>changeTeam(Number(e.target.value)));
 for(const id of ['secondaryColor','shirtPattern','customName'])$(id).addEventListener('input',render);
