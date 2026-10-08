@@ -607,3 +607,49 @@ $('downloadBtn').addEventListener('click',()=>{
 });
 state.sponsors.set('center',defaultSponsor('center'));
 makeArt(activeSponsor());updateModelUI();synchronizeUI();
+
+
+// Navegação lateral: mantém as páginas legais fora do editor e funciona com toque, teclado e leitor de tela.
+(function setupSideMenu(){
+  const toggle=$('siteMenuToggle');
+  const drawer=$('siteSideMenu');
+  const closeButton=$('siteMenuClose');
+  const backdrop=$('siteMenuBackdrop');
+  if(!toggle||!drawer||!closeButton||!backdrop)return;
+  let previousFocus=null;
+  function setMenuOpen(open){
+    if(open){
+      previousFocus=document.activeElement;
+      drawer.inert=false;
+      drawer.setAttribute('aria-hidden','false');
+      backdrop.hidden=false;
+      document.body.classList.add('site-menu-open');
+      toggle.setAttribute('aria-expanded','true');
+      toggle.setAttribute('aria-label','Fechar menu');
+      closeButton.focus();
+      return;
+    }
+    document.body.classList.remove('site-menu-open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Abrir menu');
+    drawer.inert=true;
+    drawer.setAttribute('aria-hidden','true');
+    backdrop.hidden=true;
+    if(previousFocus&&previousFocus.isConnected)previousFocus.focus();
+  }
+  toggle.addEventListener('click',()=>setMenuOpen(!document.body.classList.contains('site-menu-open')));
+  closeButton.addEventListener('click',()=>setMenuOpen(false));
+  backdrop.addEventListener('click',()=>setMenuOpen(false));
+  drawer.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuOpen(false)));
+  document.addEventListener('keydown',e=>{
+    if(!document.body.classList.contains('site-menu-open'))return;
+    if(e.key==='Escape'){e.preventDefault();setMenuOpen(false);return;}
+    if(e.key==='Tab'){
+      const focusable=Array.from(drawer.querySelectorAll('button,a[href]')).filter(node=>!node.disabled);
+      if(!focusable.length)return;
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  });
+})();
