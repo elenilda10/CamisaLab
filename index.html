@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#09121d" />
   <meta name="google-site-verification" content="Ua-_Jr2Thak1qqpLT_17-zgDK1MsY8dN1wjbNfvPcL8" />
-  <meta name="description" content="Personalize camisas de futebol online no CamisaLab. Simule patrocinadores com logos e textos, ajuste posições e baixe sua criação em PNG gratuitamente." />
+  <meta name="description" content="Crie camisas de futebol ilustrativas ou envie uma imagem própria. Simule patrocinadores com logos e textos, personalize cores e baixe sua montagem em PNG." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="CamisaLab" />
   <link rel="canonical" href="https://camisalab.vercel.app/" />
@@ -13,7 +13,7 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="CamisaLab" />
   <meta property="og:title" content="CamisaLab | Simulador de Patrocínios em Camisas de Futebol" />
-  <meta property="og:description" content="Crie montagens de patrocinadores em camisas de futebol. Adicione logos, textos, ajuste a posição e baixe em PNG." />
+  <meta property="og:description" content="Use modelos genéricos ou envie sua própria camisa. Adicione patrocínios em texto ou logo e baixe em PNG." />
   <meta property="og:url" content="https://camisalab.vercel.app/" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="CamisaLab | Personalize Camisas de Futebol Online" />
@@ -44,8 +44,8 @@
   <main id="inicio" class="shell">
     <section class="intro">
       <div class="eyebrow">UNIFORMES • CRIATIVIDADE • FUTEBOL</div>
-      <h1>O seu clube.<br /><em>A sua marca.</em></h1>
-      <p>Imagine qualquer patrocinador na camisa do seu time. Escolha uma camisa e decida se cada espaço terá imagem ou texto, com edição visual simples e rápida.</p>
+      <h1>A sua camisa.<br /><em>A sua marca.</em></h1>
+      <p>Crie um uniforme ilustrativo com suas cores ou envie uma imagem. Adicione logos e textos, ajuste os patrocinadores e compartilhe sua criação.</p>
     </section>
 
     <nav class="legal-nav-entry" aria-label="Documentos legais do CamisaLab">
@@ -64,32 +64,35 @@
           <button type="button" class="dock-app" data-page-target="page-area" aria-pressed="false"><span class="dock-icon">📍</span><span>Área</span></button>
           <button type="button" class="dock-app" data-page-target="page-ajustes" aria-pressed="false"><span class="dock-icon">🎛️</span><span>Ajustes</span></button>
         </div>
-        <div class="sidebar-heading"><span class="mini-icon">⚙</span> PAINEL DE EDIÇÃO <span class="version">V3.3</span></div>
+        <div class="sidebar-heading"><span class="mini-icon">⚙</span> PAINEL DE EDIÇÃO <span class="version">V3.4</span></div>
         <div class="control-pages" id="controlPages">
 
         <section class="panel-section control-page" id="page-clube">
-          <div class="section-top"><span class="step">01</span><h2>Escolha o clube</h2></div>
-          <label for="teamSearch">Buscar no catálogo de exemplos</label>
-          <input id="teamSearch" class="field" type="search" autocomplete="off" placeholder="Ex.: Flamengo, Real Madrid..." />
-          <label for="teamSelect">Clube</label>
-          <select id="teamSelect" class="field" aria-label="Clube"></select>
-          <div id="teamInfo" class="fine-note">Modelos ilustrativos inspirados nas cores dos clubes.</div>
-          <details class="custom-detail" id="customTeamDetail">
-            <summary>Personalizar cores e estilo da camisa <span>+</span></summary>
-            <div class="detail-grid">
-              <label class="color-field">Cor principal <input id="primaryColor" type="color" value="#ffffff" /></label>
-              <label class="color-field">Cor secundária <input id="secondaryColor" type="color" value="#202020" /></label>
-            </div>
-            <label for="shirtPattern">Estampa ilustrativa</label>
-            <select id="shirtPattern" class="field">
-              <option value="plain">Lisa</option><option value="vertical">Listras verticais</option><option value="horizontal">Listras horizontais</option><option value="half">Metade a metade</option><option value="sash">Faixa diagonal</option><option value="pinstripes">Listras finas</option><option value="center">Faixa central</option>
-            </select>
-            <label for="customName">Nome do clube (opcional)</label>
-            <input id="customName" class="field" maxlength="42" placeholder="Meu time" />
-          </details>
-          <label class="upload-tile" for="shirtUpload"><span class="upload-icon">⇧</span><span><b>Enviar foto da camisa</b><small>PNG, JPG, WEBP — serve para qualquer clube</small></span></label>
+          <div class="section-top"><span class="step">01</span><h2>Crie sua camisa</h2></div>
+          <p class="section-description">Comece com a imagem de uma camisa ou crie um modelo genérico com suas próprias cores.</p>
+          <label class="upload-tile model-upload" id="shirtUploadTile" for="shirtUpload"><span class="upload-icon">⇧</span><span><b>Enviar imagem da camisa</b><small>PNG, JPG ou WEBP do seu dispositivo</small></span></label>
           <input id="shirtUpload" type="file" accept="image/png,image/jpeg,image/webp,image/avif" hidden />
-          <button id="clearShirt" class="text-action" type="button" hidden>Remover foto enviada e voltar ao modelo ilustrativo</button>
+          <button id="clearShirt" class="text-action" type="button" hidden>Remover imagem e voltar ao modelo</button>
+          <div class="small-heading model-heading">OU ESCOLHA UM ESTILO</div>
+          <div class="model-grid" id="modelGrid" role="group" aria-label="Estilo do uniforme">
+            <button type="button" class="model-choice active" data-shirt-model="plain" aria-pressed="true"><span class="model-mini mini-plain" aria-hidden="true"></span><span>Lisa</span></button>
+            <button type="button" class="model-choice" data-shirt-model="vertical" aria-pressed="false"><span class="model-mini mini-vertical" aria-hidden="true"></span><span>Listras verticais</span></button>
+            <button type="button" class="model-choice" data-shirt-model="horizontal" aria-pressed="false"><span class="model-mini mini-horizontal" aria-hidden="true"></span><span>Listras horizontais</span></button>
+            <button type="button" class="model-choice" data-shirt-model="sash" aria-pressed="false"><span class="model-mini mini-sash" aria-hidden="true"></span><span>Faixa diagonal</span></button>
+            <button type="button" class="model-choice" data-shirt-model="half" aria-pressed="false"><span class="model-mini mini-half" aria-hidden="true"></span><span>Meio a meio</span></button>
+            <button type="button" class="model-choice" data-shirt-model="pinstripes" aria-pressed="false"><span class="model-mini mini-pinstripes" aria-hidden="true"></span><span>Listras finas</span></button>
+            <button type="button" class="model-choice" data-shirt-model="center" aria-pressed="false"><span class="model-mini mini-center" aria-hidden="true"></span><span>Faixa central</span></button>
+          </div>
+          <div class="model-colors">
+            <div class="small-heading">CORES DO MODELO</div>
+            <div class="detail-grid">
+              <label class="color-field">Cor principal <input id="primaryColor" type="color" value="#f2f4f6" /></label>
+              <label class="color-field">Cor secundária <input id="secondaryColor" type="color" value="#203f62" /></label>
+            </div>
+          </div>
+          <label for="designName">Nome da criação <span class="optional">opcional</span></label>
+          <input id="designName" class="field" maxlength="42" placeholder="Ex.: Meu uniforme" />
+          <p id="modelStatus" class="fine-note model-status" role="status" aria-live="polite">Modelo ilustrativo: Lisa. Use as cores para personalizar o visual.</p>
         </section>
 
         <section class="panel-section control-page" id="page-patrocinio">
@@ -212,13 +215,13 @@
           <button id="downloadBtn" type="button" class="download-btn"><span>↓</span> Baixar montagem em PNG</button>
           <button id="resetAllBtn" type="button" class="minor-btn">Reiniciar</button>
         </div>
-        <div class="stage-footnote">Projeto independente de simulação visual. Modelos desenhados são apenas ilustrativos, não réplicas oficiais. Marcas e clubes pertencem a seus titulares.</div>
+        <div class="stage-footnote">Projeto independente de simulação visual. Os modelos são genéricos e não oficiais. Fotos e marcas enviadas devem ser usadas com autorização.</div>
       </section>
     </section>
 
     <section id="como-usar" class="howto">
       <div><span class="eyebrow">COMO FUNCIONA</span><h2>Da ideia à camisa em três passos.</h2></div>
-      <div class="howto-cards"><div><span>01</span><h3>Escolha um time</h3><p>Use os exemplos ou carregue uma foto da camisa de qualquer clube.</p></div><div><span>02</span><h3>Crie o patrocínio</h3><p>Marque Imagem ou Texto e escolha em qual parte da camisa a marca vai aparecer.</p></div><div><span>03</span><h3>Compartilhe</h3><p>Adicione outras marcas, arraste para ajustar e exporte o PNG sem as marcações do editor.</p></div></div>
+      <div class="howto-cards"><div><span>01</span><h3>Escolha a camisa</h3><p>Envie uma foto ou crie um modelo ilustrativo com o estilo e as cores que quiser.</p></div><div><span>02</span><h3>Crie o patrocínio</h3><p>Marque Imagem ou Texto e escolha em qual parte da camisa a marca vai aparecer.</p></div><div><span>03</span><h3>Compartilhe</h3><p>Adicione outras marcas, arraste para ajustar e exporte o PNG sem as marcações do editor.</p></div></div>
     </section>
   </main>
   <footer class="site-footer">
@@ -228,7 +231,7 @@
     <span class="footer-dot" aria-hidden="true">•</span>
     <a href="privacidade.html" target="_blank" rel="noopener noreferrer">Política de privacidade ↗</a>
     <span class="footer-dot" aria-hidden="true">•</span>
-    <span class="footer-main">Versão 3.3</span>
+    <span class="footer-main">Versão 3.4</span>
   </footer>
   <script src="app.js" defer></script>
 </body>
