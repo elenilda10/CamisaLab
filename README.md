@@ -1,4 +1,4 @@
-# CamisaLab 3.3
+# CamisaLab 3.4
 
 Simulador responsivo de patrocinadores em camisas de futebol.
 
@@ -25,3 +25,7 @@ A exportação não recebe faixa escura no rodapé. A marca CL. é exibida no ca
 Os links aparecem na página inicial e no rodapé, abrindo em uma nova aba. O arquivo `sitemap.xml` inclui as três páginas.
 
 **Antes de uso profissional/comercial:** indicar o nome do responsável pelo projeto e um e-mail de atendimento reservado na Política de Privacidade; revisar os documentos com assessoria jurídica. Atualmente as solicitações iniciais usam GitHub Issues, que é um canal público: não publicar dados pessoais nesse canal.
+
+## Modelos independentes de clubes (3.4)
+
+O editor não possui catálogo ou busca de clubes. A pessoa escolhe um estilo de camisa genérico e combina duas cores, ou envia a própria foto. Os patrocínios em imagem ou texto e o download PNG permanecem disponíveis.
