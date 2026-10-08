@@ -36,10 +36,33 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="CamisaLab, início"><span class="brand-mark">CL<span>.</span></span><span class="brand-word">CAMISA<span>LAB</span></span></a>
+    <div class="topbar-start">
+      <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-label="Abrir menu" aria-controls="siteSideMenu" aria-expanded="false">
+        <span class="site-menu-hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <a class="brand" href="#inicio" aria-label="CamisaLab, início"><span class="brand-mark">CL<span>.</span></span><span class="brand-word">CAMISA<span>LAB</span></span></a>
+    </div>
     <span class="top-pill"><span class="live-dot"></span> SIMULADOR DE PATROCÍNIOS</span>
     <a class="top-help" href="#como-usar">Como usar <span aria-hidden="true">↗</span></a>
   </header>
+
+  <div class="site-menu-backdrop" id="siteMenuBackdrop" hidden></div>
+  <aside class="site-side-menu" id="siteSideMenu" role="dialog" aria-modal="true" aria-labelledby="siteMenuTitle" aria-hidden="true" inert>
+    <div class="site-menu-head">
+      <div><span class="site-menu-overline">NAVEGAÇÃO</span><h2 id="siteMenuTitle">Menu CamisaLab<span>.</span></h2></div>
+      <button type="button" class="site-menu-close" id="siteMenuClose" aria-label="Fechar menu">×</button>
+    </div>
+    <nav class="site-side-nav" aria-label="Links do CamisaLab">
+      <span class="site-menu-label">NAVEGAR</span>
+      <a class="site-menu-link" href="#inicio"><span class="site-menu-icon" aria-hidden="true">⌂</span><span>Início</span><span class="site-menu-arrow" aria-hidden="true">›</span></a>
+      <a class="site-menu-link" href="#editor"><span class="site-menu-icon" aria-hidden="true">👕</span><span>Editor de camisas</span><span class="site-menu-arrow" aria-hidden="true">›</span></a>
+      <a class="site-menu-link" href="#como-usar"><span class="site-menu-icon" aria-hidden="true">?</span><span>Como usar</span><span class="site-menu-arrow" aria-hidden="true">›</span></a>
+      <span class="site-menu-label site-menu-divider">INFORMAÇÕES DO SITE</span>
+      <a class="site-menu-link" href="termos.html" target="_blank" rel="noopener noreferrer"><span class="site-menu-icon" aria-hidden="true">§</span><span>Termos de uso e responsabilidade</span><span class="site-menu-arrow" aria-hidden="true">↗</span></a>
+      <a class="site-menu-link" href="privacidade.html" target="_blank" rel="noopener noreferrer"><span class="site-menu-icon" aria-hidden="true">♢</span><span>Política de privacidade</span><span class="site-menu-arrow" aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="site-menu-note"><span class="site-menu-note-dot" aria-hidden="true"></span> Simulador independente de camisas de futebol.</div>
+  </aside>
 
   <main id="inicio" class="shell">
     <section class="intro">
@@ -48,14 +71,7 @@
       <p>Crie um uniforme ilustrativo com suas cores ou envie uma imagem. Adicione logos e textos, ajuste os patrocinadores e compartilhe sua criação.</p>
     </section>
 
-    <nav class="legal-nav-entry" aria-label="Documentos legais do CamisaLab">
-      <span class="legal-nav-label">Informações do site</span>
-      <div class="legal-nav-actions">
-        <a href="termos.html" target="_blank" rel="noopener noreferrer">Termos de uso e responsabilidade <span class="external-mark" aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
-
-    <section class="workspace" aria-label="Editor de camisas">
+    <section class="workspace" id="editor" aria-label="Editor de camisas">
       <aside class="controls">
         <div class="app-dock" id="appDock" role="group" aria-label="Seções do painel">
           <button type="button" class="dock-app active" data-page-target="page-clube" aria-pressed="true"><span class="dock-icon">👕</span><span>Camisa</span></button>
@@ -63,7 +79,7 @@
           <button type="button" class="dock-app" data-page-target="page-area" aria-pressed="false"><span class="dock-icon">📍</span><span>Área</span></button>
           <button type="button" class="dock-app" data-page-target="page-ajustes" aria-pressed="false"><span class="dock-icon">🎛️</span><span>Ajustes</span></button>
         </div>
-        <div class="sidebar-heading"><span class="mini-icon">⚙</span> PAINEL DE EDIÇÃO <span class="version">V3.4</span></div>
+        <div class="sidebar-heading"><span class="mini-icon">⚙</span> PAINEL DE EDIÇÃO <span class="version">V3.5</span></div>
         <div class="control-pages" id="controlPages">
 
         <section class="panel-section control-page" id="page-clube">
@@ -230,7 +246,7 @@
     <span class="footer-dot" aria-hidden="true">•</span>
     <a href="privacidade.html" target="_blank" rel="noopener noreferrer">Política de privacidade ↗</a>
     <span class="footer-dot" aria-hidden="true">•</span>
-    <span class="footer-main">Versão 3.4</span>
+    <span class="footer-main">Versão 3.5</span>
   </footer>
   <script src="app.js" defer></script>
 </body>
