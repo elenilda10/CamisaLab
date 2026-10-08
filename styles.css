@@ -200,3 +200,25 @@ html,body{max-width:100%;overflow-x:clip}
  .legal-nav-actions{flex-direction:column;align-items:stretch}
  .legal-nav-actions a{width:100%}
 }
+
+
+/* CamisaLab 3.4 — modelos genéricos sem seleção de clubes */
+.model-heading{margin:18px 0 9px;color:#b4ff43}
+.model-upload{margin-top:12px;min-height:88px;border:1px dashed #4d7688;background:linear-gradient(120deg,#153a36,#122334);border-radius:13px}
+.model-upload.is-active{border-style:solid;border-color:var(--accent);background:#21372f}
+.model-grid{--model-primary:#f2f4f6;--model-secondary:#203f62;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:8px 0 16px}
+.model-choice{min-width:0;min-height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:10px 5px;border:1px solid #324d5d;background:linear-gradient(180deg,#1a2d3e,#102030);border-radius:13px;color:#d8e5ed;font-size:10px;font-weight:750;line-height:1.2;text-align:center;transition:border-color .18s,background .18s,transform .18s}
+.model-choice:hover,.model-choice:focus-visible{border-color:#9cce71;background:#203c41}
+.model-choice.active{border-color:var(--accent);color:#edffdf;background:linear-gradient(180deg,#254536,#15302a);box-shadow:inset 0 0 0 1px #b4ff4360}
+.model-mini{display:block;width:57px;height:57px;flex:none;border:1px solid #ffffff66;clip-path:polygon(29% 0%,42% 0%,45% 10%,55% 10%,58% 0%,71% 0%,100% 20%,88% 47%,75% 38%,75% 100%,25% 100%,25% 38%,12% 47%,0% 20%);background:var(--model-primary)}
+.model-mini.mini-vertical{background:repeating-linear-gradient(90deg,var(--model-primary) 0 9px,var(--model-secondary) 9px 17px)}
+.model-mini.mini-horizontal{background:repeating-linear-gradient(0deg,var(--model-primary) 0 10px,var(--model-secondary) 10px 17px)}
+.model-mini.mini-sash{background:linear-gradient(125deg,var(--model-primary) 0 35%,var(--model-secondary) 35% 58%,var(--model-primary) 58%)}
+.model-mini.mini-half{background:linear-gradient(90deg,var(--model-primary) 0 50%,var(--model-secondary) 50%)}
+.model-mini.mini-pinstripes{background:repeating-linear-gradient(90deg,var(--model-primary) 0 8px,var(--model-secondary) 8px 11px)}
+.model-mini.mini-center{background:linear-gradient(90deg,var(--model-primary) 0 36%,var(--model-secondary) 36% 64%,var(--model-primary) 64%)}
+.model-colors{padding:13px 13px 3px;border:1px solid #2c4654;border-radius:13px;background:#101f2c;margin-bottom:14px}
+.model-colors .small-heading{margin:0 0 10px;color:#b4ff43}
+.model-status{margin:12px 0 2px;color:#a8c0c6;line-height:1.55}
+.optional{font-size:10px;font-weight:500;color:#839bad}
+@media(max-width:420px){.model-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.model-choice{min-height:96px}.model-mini{width:49px;height:49px}}
