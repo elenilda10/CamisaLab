@@ -1,96 +1,14 @@
 'use strict';
-// Catálogo inicial de exemplos. São identidades cromáticas ilustrativas,
-// não uniformes oficiais. Qualquer camisa pode ser carregada em PNG/JPG/WEBP.
-const DATA = `
-Santos|Brasil|#f4f4f1|#151b23|plain
-Flamengo|Brasil|#c51f29|#171b22|horizontal
-Corinthians|Brasil|#f1f1eb|#151515|plain
-Palmeiras|Brasil|#146342|#f0f5e9|plain
-São Paulo|Brasil|#f4f3f0|#dc2832|center
-Vasco da Gama|Brasil|#171c23|#f6f5ee|sash
-Fluminense|Brasil|#7b183b|#196a53|vertical
-Botafogo|Brasil|#e8e9e9|#171717|vertical
-Grêmio|Brasil|#62a8d6|#161616|vertical
-Internacional|Brasil|#bd1924|#f7f6ee|plain
-Cruzeiro|Brasil|#1757ae|#f7f8fa|plain
-Atlético Mineiro|Brasil|#f7f7f7|#151515|vertical
-Bahia|Brasil|#f7f9f9|#e52b38|plain
-Vitória|Brasil|#dc232c|#121212|horizontal
-Fortaleza|Brasil|#1567b1|#e42432|horizontal
-Ceará|Brasil|#f3f4f4|#111111|vertical
-Sport Recife|Brasil|#b90f20|#1b1518|horizontal
-Athletico Paranaense|Brasil|#c3232c|#171717|sash
-Coritiba|Brasil|#f5f5f0|#196d40|horizontal
-Bragantino|Brasil|#f0f1f3|#db2430|plain
-Paysandu|Brasil|#1e76ad|#f7f7f7|vertical
-Remo|Brasil|#142b59|#f6f6f4|plain
-Real Madrid|Espanha|#f9f8f3|#c5a253|plain
-Barcelona|Espanha|#9a1638|#173e86|vertical
-Atlético de Madrid|Espanha|#fbf9f8|#c51f31|vertical
-Sevilla|Espanha|#f7f7f7|#d51e31|plain
-Athletic Bilbao|Espanha|#f4f5f4|#c9242f|vertical
-Manchester United|Inglaterra|#c51c2e|#161616|plain
-Manchester City|Inglaterra|#8fcbe9|#f7f7f7|plain
-Liverpool|Inglaterra|#bd1729|#f7f6ee|plain
-Arsenal|Inglaterra|#bf2739|#f9f8f3|plain
-Chelsea|Inglaterra|#1856bc|#f6f6f6|plain
-Tottenham|Inglaterra|#f8f9fa|#1b2e4e|plain
-Newcastle|Inglaterra|#f9f9f9|#171717|vertical
-Aston Villa|Inglaterra|#853049|#8fd0e6|plain
-Bayern de Munique|Alemanha|#c71e37|#f9f8f7|plain
-Borussia Dortmund|Alemanha|#f5d921|#151515|plain
-Bayer Leverkusen|Alemanha|#c12b30|#101010|vertical
-RB Leipzig|Alemanha|#f8f8f8|#d8212c|plain
-Juventus|Itália|#f8f8f8|#151515|vertical
-Inter de Milão|Itália|#2366af|#151515|vertical
-Milan|Itália|#b5222d|#111111|vertical
-Napoli|Itália|#4bb5e6|#f8f8f8|plain
-Roma|Itália|#841b2e|#efb13e|plain
-Lazio|Itália|#a7d6ed|#f5f8f8|plain
-Paris Saint-Germain|França|#172951|#d02439|center
-Olympique de Marseille|França|#f8f8f8|#46b8e9|plain
-Lyon|França|#f9f9f9|#b92a3b|center
-Monaco|França|#f6f6f6|#c82e37|half
-Benfica|Portugal|#d92231|#f8f8f8|plain
-Porto|Portugal|#1d58aa|#f8f8f8|vertical
-Sporting|Portugal|#f5f6f5|#137548|horizontal
-Ajax|Holanda|#f8f8f8|#ca1c2e|center
-PSV|Holanda|#c91f30|#f7f8f8|vertical
-Feyenoord|Holanda|#d31d30|#f7f7f7|half
-Celtic|Escócia|#e9f7e8|#168552|horizontal
-Rangers|Escócia|#1b4ea5|#f8f8f8|plain
-Boca Juniors|Argentina|#143c8b|#e9bf22|horizontal
-River Plate|Argentina|#f4f5f5|#d92132|sash
-Racing|Argentina|#8ecdeb|#f9f9f9|vertical
-Independiente|Argentina|#c51d27|#f8f8f8|plain
-Peñarol|Uruguai|#e7bb20|#151515|vertical
-Nacional|Uruguai|#f8f8f8|#23549d|plain
-Colo-Colo|Chile|#f7f7f5|#151515|plain
-Club América|México|#f0dd92|#173e84|plain
-Chivas Guadalajara|México|#e9f3f8|#d22334|vertical
-Cruz Azul|México|#1760b2|#f3f5f8|plain
-Tigres UANL|México|#edcf28|#20449b|center
-Inter Miami|Estados Unidos|#f1a2b8|#161616|plain
-LA Galaxy|Estados Unidos|#f6f6f5|#183a7e|sash
-Seattle Sounders|Estados Unidos|#3f8a56|#1f3964|plain
-Al Nassr|Arábia Saudita|#e4ca26|#184da0|plain
-Al Hilal|Arábia Saudita|#145eb5|#f4f5f5|plain
-Al Ittihad|Arábia Saudita|#e5b931|#171717|vertical
-Galatasaray|Turquia|#d02639|#dc9b26|half
-Fenerbahçe|Turquia|#e2c331|#1c3879|vertical
-Besiktas|Turquia|#f5f5f5|#161616|vertical
-Olympiacos|Grécia|#df2939|#f5f5f5|vertical
-Estrela Vermelha|Sérvia|#d92132|#f7f7f7|vertical
-Al Ahly|Egito|#ba1d2f|#f8f7f5|plain
-Zamalek|Egito|#f7f8f8|#d92433|horizontal
-Mamelodi Sundowns|África do Sul|#e5cc30|#236f47|plain
-Urawa Red Diamonds|Japão|#d12a34|#151515|plain
-Vissel Kobe|Japão|#862536|#f3f3f2|plain
-Kashima Antlers|Japão|#b21c38|#122744|plain
-Jeonbuk Hyundai|Coreia do Sul|#26804e|#121a20|plain
-Ulsan HD|Coreia do Sul|#1d64b6|#f1db2c|plain
-Auckland City|Nova Zelândia|#1a589e|#f7f7f7|plain
-`.trim().split('\n').map((line,i)=>{const [name,country,primary,secondary,pattern]=line.split('|');return {id:i,name,country,primary,secondary,pattern};});
+// Modelos genéricos e originais: nenhuma lista de clubes, fotos ou escudos externos.
+const MODELS = [
+  {id:'plain',label:'Lisa'},
+  {id:'vertical',label:'Listras verticais'},
+  {id:'horizontal',label:'Listras horizontais'},
+  {id:'sash',label:'Faixa diagonal'},
+  {id:'half',label:'Meio a meio'},
+  {id:'pinstripes',label:'Listras finas'},
+  {id:'center',label:'Faixa central'}
+];
 
 const $ = id => document.getElementById(id);
 const canvas = $('shirtCanvas');
@@ -104,7 +22,6 @@ const sponsorHitNodes = new Map();
 const ctx = canvas.getContext('2d', {alpha:false});
 const W = canvas.width, H = canvas.height;
 const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
-const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 const POSITIONS = {
   center: {label:'Centro', x:512, y:530, size:32},
   leftChest: {label:'Peito esquerdo', x:403, y:402, size:13},
@@ -113,7 +30,7 @@ const POSITIONS = {
   rightSleeve: {label:'Manga direita', x:783, y:437, size:13},
   lower: {label:'Parte inferior', x:512, y:734, size:24}
 };
-const state = {team:DATA[0],shirtImage:null,activePosition:'center',sponsors:new Map()};
+const state = {model:'plain',shirtImage:null,activePosition:'center',sponsors:new Map()};
 const pointers = new Map();
 let dragging = false, dragPrev = null, pinch = null, interactionMode = null, transformOrigin = null;
 function defaultSponsor(position) {
@@ -146,31 +63,32 @@ function rotateActive(delta){
   const s=activeSponsor();if(!s)return;
   s.rotation=normalizeAngle(s.rotation+delta);synchronizeUI();
 }
-function groupedTeams(filter='') {
-  const countryOrder=['Brasil','Espanha','Inglaterra','Alemanha','Itália','França','Portugal','Holanda','Escócia','Argentina','Uruguai','Chile','México','Estados Unidos','Arábia Saudita','Turquia','Grécia','Sérvia','Egito','África do Sul','Japão','Coreia do Sul','Nova Zelândia'];
-  const select=$('teamSelect'), retained=state.team.id;
-  select.replaceChildren();let count=0;
-  for(const country of countryOrder){
-    const items=DATA.filter(t=>t.country===country && norm(`${t.name} ${t.country}`).includes(norm(filter)));
-    if(!items.length)continue;
-    const group=document.createElement('optgroup');group.label=country;
-    for(const item of items){const option=document.createElement('option');option.value=String(item.id);option.textContent=item.name;group.append(option);count++;}
-    select.append(group);
-  }
-  if(!count){const option=document.createElement('option');option.value='';option.textContent='Nenhum clube encontrado — envie uma foto';select.append(option);}
-  if([...select.options].some(o=>o.value===String(retained)))select.value=String(retained);
-  else if(count){select.selectedIndex=0;changeTeam(Number(select.value));}
-  else select.value='';
+function currentModel(){return MODELS.find(m=>m.id===state.model)||MODELS[0];}
+function updateModelUI(){
+  const selected=currentModel();
+  const onPhoto=!!state.shirtImage;
+  document.querySelectorAll('[data-shirt-model]').forEach(btn=>{
+    const active=!onPhoto && btn.dataset.shirtModel===selected.id;
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-pressed',String(active));
+  });
+  const preview=$('modelGrid');
+  preview.style.setProperty('--model-primary',$('primaryColor').value);
+  preview.style.setProperty('--model-secondary',$('secondaryColor').value);
+  $('shirtUploadTile').classList.toggle('is-active',onPhoto);
+  $('modelStatus').textContent=onPhoto
+    ? 'Sua foto está ativa. Toque em um modelo para voltar à camisa ilustrativa.'
+    : 'Modelo ilustrativo: '+selected.label+'. Use as cores para personalizar o visual.';
+  const title=$('designName').value.trim();
+  $('stageTitle').textContent=title|| (onPhoto?'Sua foto personalizada':'Camisa '+selected.label.toLowerCase());
+  $('clearShirt').hidden=!onPhoto;
 }
-function changeTeam(id){
-  const found=DATA.find(t=>t.id===id);if(!found)return;
-  state.team=found;state.shirtImage=null;
-  $('shirtUpload').value='';$('clearShirt').hidden=true;
-  $('primaryColor').value=found.primary;$('secondaryColor').value=found.secondary;
-  $('shirtPattern').value=found.pattern;$('customName').value='';
-  $('stageTitle').textContent=found.name+' — sua versão';
-  $('teamInfo').textContent=`${found.country} · Prévia ilustrativa nas cores do clube. Envie a camisa real para uma montagem mais fiel.`;
-  regenerateArtwork();render();
+function chooseModel(id){
+  if(!MODELS.some(m=>m.id===id))return;
+  state.model=id;
+  state.shirtImage=null;
+  $('shirtUpload').value='';
+  regenerateArtwork();updateModelUI();render();
 }
 function hexRgb(s){const n=parseInt(s.slice(1),16);return [(n>>16)&255,(n>>8)&255,n&255];}
 function lighten(s,n){const c=hexRgb(s);return `rgb(${c.map(v=>clamp(Math.round(v+(n>=0?(255-v)*n:v*n)),0,255)).join(',')})`;}
@@ -184,7 +102,7 @@ function drawPattern(c,t){const {secondary,pattern}=t;
   if(pattern==='center'){c.fillRect(463,230,98,700);}
   if(pattern==='sash'){c.save();c.translate(512,510);c.rotate(-.65);c.fillRect(-90,-500,145,1000);c.restore();}
 }
-function drawShirt(c){const t={primary:$('primaryColor').value,secondary:$('secondaryColor').value,pattern:$('shirtPattern').value};
+function drawShirt(c){const t={primary:$('primaryColor').value,secondary:$('secondaryColor').value,pattern:state.model};
   c.save();c.shadowColor='#000c';c.shadowBlur=47;c.shadowOffsetY=20;shirtPath(c);c.fillStyle=t.primary;c.fill();c.restore();
   c.save();shirtPath(c);c.clip();c.fillStyle=t.primary;c.fillRect(80,210,870,730);drawPattern(c,t);
   const glaze=c.createLinearGradient(180,300,860,850);glaze.addColorStop(0,'#ffffff50');glaze.addColorStop(.20,'#ffffff0a');glaze.addColorStop(.46,'#00000018');glaze.addColorStop(.73,'#ffffff0d');glaze.addColorStop(1,'#00000052');c.fillStyle=glaze;c.fillRect(100,210,800,740);
@@ -620,18 +538,18 @@ resizePanelTo(panelPages[0]);
 $('jumpToControls').addEventListener('click',()=>{
   document.querySelector('.controls').scrollIntoView({behavior:'smooth',block:'start'});
 });
-$('teamSearch').addEventListener('input',e=>groupedTeams(e.target.value));
-$('teamSelect').addEventListener('change',e=>changeTeam(Number(e.target.value)));
-for(const id of ['secondaryColor','shirtPattern','customName'])$(id).addEventListener('input',render);
-$('primaryColor').addEventListener('input',()=>{regenerateArtwork();render();});
+document.querySelectorAll('[data-shirt-model]').forEach(btn=>btn.addEventListener('click',()=>chooseModel(btn.dataset.shirtModel)));
+$('primaryColor').addEventListener('input',()=>{regenerateArtwork();updateModelUI();render();});
+$('secondaryColor').addEventListener('input',()=>{updateModelUI();render();});
+$('designName').addEventListener('input',()=>updateModelUI());
 $('shirtUpload').addEventListener('change',async e=>{
   const file=e.target.files?.[0],img=await loadFile(file,false);if(!img)return;
-  state.shirtImage=img;$('clearShirt').hidden=false;
-  $('stageTitle').textContent='Camisa enviada — sua versão';regenerateArtwork();render();
+  state.shirtImage=img;
+  regenerateArtwork();updateModelUI();render();
 });
 $('clearShirt').addEventListener('click',()=>{
-  state.shirtImage=null;$('shirtUpload').value='';$('clearShirt').hidden=true;
-  $('stageTitle').textContent=state.team.name+' — sua versão';regenerateArtwork();render();
+  state.shirtImage=null;$('shirtUpload').value='';
+  regenerateArtwork();updateModelUI();render();
 });
 document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('click',()=>setKind(b.dataset.kind)));
 document.querySelectorAll('[data-position]').forEach(b=>b.addEventListener('click',()=>selectPosition(b.dataset.position)));
@@ -668,9 +586,10 @@ $('resetAllBtn').addEventListener('click',()=>{
   state.sponsors.clear();state.activePosition='center';
   state.sponsors.set('center',defaultSponsor('center'));
   state.shirtImage=null;
-  $('teamSearch').value='';$('shirtUpload').value='';$('logoUpload').value='';
-  $('clearShirt').hidden=true;groupedTeams();changeTeam(DATA[0].id);
-  makeArt(activeSponsor());synchronizeUI();
+  state.model='plain';
+  $('primaryColor').value='#f2f4f6';$('secondaryColor').value='#203f62';
+  $('designName').value='';$('shirtUpload').value='';$('logoUpload').value='';
+  makeArt(activeSponsor());updateModelUI();synchronizeUI();
 });
 $('downloadBtn').addEventListener('click',()=>{
   try{
@@ -680,11 +599,11 @@ $('downloadBtn').addEventListener('click',()=>{
       if(!blob){alert('Não foi possível gerar o PNG.');return;}
       const u=URL.createObjectURL(blob),a=document.createElement('a');
       a.href=u;
-      const name=($('customName').value.trim()||state.team.name).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      const name=($('designName').value.trim()||('camisa-'+state.model)).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
       a.download=`camisalab-${name||'simulacao'}.png`;a.click();
       setTimeout(()=>URL.revokeObjectURL(u),30000);
     },'image/png');
   }catch(err){console.error(err);alert('Erro ao exportar. Tente uma imagem local em PNG ou JPG.');}
 });
 state.sponsors.set('center',defaultSponsor('center'));
-groupedTeams();changeTeam(DATA[0].id);synchronizeUI();
+updateModelUI();synchronizeUI();
